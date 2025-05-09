@@ -1,0 +1,6 @@
+# Ignoriere alles im build/ und dist/ Verzeichnis
+build/** linguist-generated
+dist/** linguist-generated
+
+# Ignoriere .spec-Dateien (z. B. von PyInstaller)
+*.spec linguist-generated
