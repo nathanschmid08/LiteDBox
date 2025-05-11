@@ -1,0 +1,19 @@
+UML Diagramm ersteller -> Kinda done
+
+///
+
+JSON Editor, um das raw JSON zu editieren
+
+SQL Query saver, der die eingegebenen Querys speichert in einem .sql file. 
+    --> Es soll in Sessions gespeichert werden. 
+        ```LiteDBox 
+        start session *session-name*
+        ```
+
+        Der ganze code dieser Session wird in *session-name.sql* gespeichert
+
+        ```LiteDBox
+        end session *session-name*
+        ```
+
+Integriertes Wiki, um LiteDBox SQL zu dokumentieren
