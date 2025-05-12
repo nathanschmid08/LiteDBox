@@ -19,7 +19,7 @@ function createWindow() {
   // Nach z.B. 3 Sekunden auf das Hauptfenster wechseln
   setTimeout(() => {
     win.loadFile("index.html");
-  }, 5000);
+  }, 6000);
 }
 
 // IPC zum Speichern von Daten
