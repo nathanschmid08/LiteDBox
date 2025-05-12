@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LiteDBox</title>
+    <link rel="stylesheet" href="LOADING/loading.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f7f7f7;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(to bottom, #1a63a2 0%, #0e5189 100%);
+            padding: 15px 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #09416e;
+            width: 500px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .content {
+            background-color: white;
+            width: 500px;
+            padding: 30px 25px;
+            border-left: 1px solid #d6d6d6;
+            border-right: 1px solid #d6d6d6;
+        }
+
+        .progress-section {
+            margin-bottom: 25px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 20px;
+            background-color: #e8e8e8;
+            border: 1px solid #d0d0d0;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to bottom, #5b9bd5 0%, #3572b0 100%);
+            transition: width 0.3s ease;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            color: #555;
+            font-size: 12px;
+        }
+
+        .loading-details {
+            margin-top: 5px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .status-area {
+            background-color: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 2px;
+            padding: 10px;
+            height: 120px;
+            overflow-y: auto;
+            font-family: "Courier New", monospace;
+            font-size: 12px;
+            color: #333;
+        }
+
+        .status-line {
+            margin-bottom: 3px;
+            line-height: 1.4;
+        }
+
+        .footer {
+            background-color: #f0f0f0;
+            border-top: 1px solid #d6d6d6;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #666;
+            width: 500px;
+        }
+
+        .copyright {
+            font-size: 11px;
+        }
+
+        .version {
+            font-weight: 600;
+        }
+
+        .fa-database {
+            color: #0e5189;
+            font-size: 32px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="fas fa-database">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                <path
+                    d="M448 80l0 48c0 44.2-100.3 80-224 80S0 172.2 0 128L0 80C0 35.8 100.3 0 224 0S448 35.8 448 80zM393.2 214.7c20.8-7.4 39.9-16.9 54.8-28.6L448 288c0 44.2-100.3 80-224 80S0 332.2 0 288L0 186.1c14.9 11.8 34 21.2 54.8 28.6C99.7 230.7 159.5 240 224 240s124.3-9.3 169.2-25.3zM0 346.1c14.9 11.8 34 21.2 54.8 28.6C99.7 390.7 159.5 400 224 400s124.3-9.3 169.2-25.3c20.8-7.4 39.9-16.9 54.8-28.6l0 85.9c0 44.2-100.3 80-224 80S0 476.2 0 432l0-85.9z" />
+            </svg>
+        </div>
+        <img src="logo.png" alt="LiteDBox Logo" class="logo" />
+        <div class="title">LiteDBox SQL Studio</div>
+    </div>
+
+    <div class="content">
+        <div class="progress-section">
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="progress-info">
+                <div class="percent" id="percent">0%</div>
+                <div class="task" id="task">Initializing...</div>
+            </div>
+            <div class="loading-details" id="loading-details">
+                Loading startup components...
+            </div>
+        </div>
+
+        <div class="status-area" id="status-area">
+            <div class="status-line">Initializing LiteDBox environment...</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="copyright">© 2025 LiteDBox</div>
+        <div class="version">Version 1.0.0</div>
+    </div>
+
+    <script>
+        const totalDuration = 5000;
+        const updateInterval = 200;
+
+        const statusMessages = [
+            "Checking system requirements...",
+            "Loading core libraries...",
+            "Initializing connection manager...",
+            "Loading database drivers...",
+            "Preparing user interface components...",
+            "Loading saved connections...",
+            "Initializing query builder...",
+            "Checking for updates...",
+            "Loading extensions...",
+            "Setting up workspace...",
+            "Loading SQL autocomplete dictionary...",
+            "Initializing script engine...",
+            "Setting up session parameters...",
+            "Loading user preferences...",
+            "Starting background services...",
+            "Application ready.",
+        ];
+
+        const taskMessages = [
+            "Initializing...",
+            "Loading core components...",
+            "Preparing environment...",
+            "Loading resources...",
+            "Finalizing...",
+        ];
+
+        const progressBar = document.getElementById("progress-bar");
+        const percentText = document.getElementById("percent");
+        const taskText = document.getElementById("task");
+        const loadingDetails = document.getElementById("loading-details");
+        const statusArea = document.getElementById("status-area");
+
+        let startTime = Date.now();
+        let currentTaskIndex = 0;
+        let statusIndex = 0;
+
+        function addStatusMessage(message) {
+            const line = document.createElement("div");
+            line.className = "status-line";
+            line.textContent = message;
+            statusArea.appendChild(line);
+            statusArea.scrollTop = statusArea.scrollHeight;
+        }
+
+        function updateProgress() {
+            const elapsedTime = Date.now() - startTime;
+            const progress = Math.min(elapsedTime / totalDuration, 1);
+            const progressPercent = Math.floor(progress * 100);
+
+            progressBar.style.width = `${progressPercent}%`;
+            percentText.textContent = `${progressPercent}%`;
+
+            // Update task message at certain progress points
+            const taskIndex = Math.floor(progress * taskMessages.length);
+            if (taskIndex !== currentTaskIndex && taskIndex < taskMessages.length) {
+                currentTaskIndex = taskIndex;
+                taskText.textContent = taskMessages[taskIndex];
+            }
+
+            // Add status messages periodically
+            if (statusIndex < statusMessages.length && Math.random() < 0.3) {
+                addStatusMessage(statusMessages[statusIndex]);
+                loadingDetails.textContent = statusMessages[statusIndex];
+                statusIndex++;
+            }
+
+            // Continue updating if not done
+            if (progress < 1) {
+                setTimeout(updateProgress, updateInterval);
+            } else {
+                // Final status when loading is complete
+                addStatusMessage("Application ready.");
+                loadingDetails.textContent = "Ready to use.";
+                taskText.textContent = "Complete";
+            }
+        }
+
+        // Start the progress updates
+        updateProgress();
+    </script>
+</body>
+
+</html>
