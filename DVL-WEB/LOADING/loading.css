@@ -36,12 +36,34 @@ body {
     font-weight: 600;
 }
 
+.content-wrapper {
+    position: relative;
+    width: 500px;
+}
+
+.content-icon {
+    position: absolute;
+    top: -120px; 
+    left: -100px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.content-icon svg {
+    width: 400px;
+    height: auto;
+    opacity: 0.08;
+    color: #0e5189;
+}
+
 .content {
     background-color: white;
-    width: 500px;
+    width: 100%;
     padding: 30px 25px;
     border-left: 1px solid #d6d6d6;
     border-right: 1px solid #d6d6d6;
+    position: relative;
+    z-index: 1;
 }
 
 .progress-section {
@@ -113,10 +135,4 @@ body {
 
 .version {
     font-weight: 600;
-}
-
-.fa-database {
-    color: #0e5189;
-    font-size: 32px;
-    margin-right: 10px;
 }
