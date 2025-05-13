@@ -8,6 +8,7 @@ function createWindow() {
   win = new BrowserWindow({
     width: 800,
     height: 600,
+    icon: path.join(__dirname, "ASSETS", "logo.icns"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js")
     }
