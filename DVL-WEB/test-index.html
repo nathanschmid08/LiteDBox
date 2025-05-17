@@ -11,6 +11,40 @@
             padding: 2rem;
         }
 
+        .sidenav {
+            height: 100%; 
+            width: 160px; 
+            position: fixed; 
+            z-index: 1; 
+            top: 0; 
+            left: 0;
+            background-color: #111; 
+            overflow-x: hidden; 
+            padding-top: 20px;
+        }
+
+        .sidenav a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+        }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        .main {
+            margin-left: 160px; 
+            padding: 0px 10px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+        }
+
         button {
             background: #0a84ff;
             border: none;
@@ -22,9 +56,18 @@
 </head>
 
 <body>
-    <h1>LiteDBox</h1>
-    <textarea id="textArea" rows="10" cols="50" placeholder="Enter SQL-Code..."></textarea>
-    <button id="saveBtn">Speichern</button>
+    <div class="sidenav"> 
+        <h1>LiteDBox</h1>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <div class="main">
+        <textarea id="textArea" rows="10" cols="50" placeholder="Enter SQL-Code..."></textarea>
+        <button id="saveBtn">Speichern</button>
+    </div>
     <script src="renderer.js"></script>
 </body>
 </html>
