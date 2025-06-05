@@ -1,8 +1,49 @@
 body {
+    margin: 0;
     font-family: sans-serif;
-    background: white;
-    color: black;
-    padding: 2rem;
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 300px;
+    background-color: #f0f0f0;
+    padding: 1rem;
+    border-right: 1px solid #ccc;
+    overflow-y: auto;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 1rem;
+}
+
+h2 {
+    margin-top: 1rem;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    cursor: pointer;
+    padding: 4px 0;
+}
+
+li:hover {
+    text-decoration: underline;
+}
+
+#textArea {
+    width: 100%;
+    height: 200px;
+    margin-top: 1rem;
+}
+
+#saveBtn {
+    margin-top: 0.5rem;
 }
 
 button {

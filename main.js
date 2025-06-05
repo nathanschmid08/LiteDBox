@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, screen } = require("electron");
 const fs = require("fs");
 const path = require("path");
 
@@ -16,16 +16,18 @@ function createWindow() {
     }
   });
 
-  // Zuerst den Loadscreen laden
+  // Erst Loadscreen anzeigen
   win.loadFile("loadscreen.html");
 
-  // Nach z.B. 3 Sekunden auf das Hauptfenster wechseln
+  // Nach 6 Sekunden das Fenster auf Bildschirmgröße setzen und index.html laden
   setTimeout(() => {
+    const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+    win.setBounds({ x: 0, y: 0, width, height }); // normales Fenster in voller Bildschirmgröße
     win.loadFile("index.html");
   }, 6000);
 }
 
-// IPC zum Speichern von Daten
+// IPC zum Speichern
 ipcMain.handle("save-data", async (_, content) => {
   fs.writeFileSync("data.json", JSON.stringify({ data: content }, null, 2));
 });

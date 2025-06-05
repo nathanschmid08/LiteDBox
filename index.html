@@ -6,10 +6,21 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>LiteDBox</h1>
-  <textarea id="textArea" rows="10" cols="50" placeholder="Enter SQL-Code..."></textarea>
-  <button id="saveBtn">Speichern</button>
-  <script src="renderer.js"></script>
+  <div class="sidebar">
+    <h2>Datenbanken</h2>
+    <ul id="folderList"></ul>
+    <h2>Dateien</h2>
+    <ul id="fileList"></ul>
+  </div>
+
+  <div class="content">
+    <h1>LiteDBox</h1>
+    <textarea id="textArea" placeholder="Enter SQL-Code..."></textarea>
+    <br>
+    <button id="saveBtn">Speichern</button>
+  </div>
+
+  <script src="render.js"></script>
   <script src="core.js"></script>
 </body>
 </html>
