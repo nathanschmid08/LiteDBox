@@ -1,0 +1,14 @@
+body {
+    font-family: sans-serif;
+    background: white;
+    color: black;
+    padding: 2rem;
+}
+
+button {
+    background: #0a84ff;
+    border: none;
+    padding: 1rem;
+    color: white;
+    cursor: pointer;
+}
